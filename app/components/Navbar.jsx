@@ -37,9 +37,9 @@ const Navbar = () => {
         GAURAV.
       </h1>
       <ul className="hidden md:flex">
-        <li className="p-4 inline-block border-b-2 border-transparent hover:border-[#00df9a] transition duration-300 ease-in-out">
+        {/* <li className="p-4 inline-block border-b-2 border-transparent hover:border-[#00df9a] transition duration-300 ease-in-out">
           Home
-        </li>
+        </li> */}
         <li className="p-4 inline-block border-b-2 border-transparent hover:border-[#00df9a] transition duration-300 ease-in-out">
           <Link href="/static/GauravCV.pdf" download>
             Resume
