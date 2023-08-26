@@ -12,19 +12,24 @@ const Navbar = () => {
     setNav(!nav);
   };
 
+  const handleLinkClick = () => {
+    setNav(true); // Close the sidebar when a link is clicked
+  };
+
   useEffect(() => {
     function handleClickOutside(event) {
       if (navRef.current && !navRef.current.contains(event.target)) {
         setNav(true);
       }
     }
-
+  
     document.addEventListener("mousedown", handleClickOutside);
-
+  
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+  
 
   return (
     <div className="text-white flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4">
@@ -67,12 +72,13 @@ const Navbar = () => {
         {!nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
       </div>
       <div
-        className={
-          !nav
-            ? "left-0 top-0 fixed w-[60%] h-[1000px] border-r border-r-gray-900 bg-[#0003009e] z-50 backdrop-blur ease-in-out duration-500"
-            : "left-[-100%] top-0 fixed w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500"
-        }
-      >
+  ref={navRef}
+  className={
+    !nav
+      ? "left-0 top-0 fixed w-[60%] h-[1000px] border-r border-r-gray-900 bg-[#0003009e] z-50 backdrop-blur ease-in-out duration-500"
+      : "left-[-100%] top-0 fixed w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500"
+  }
+>
         <h1 className="w-full text-3xl font-bold m-7 text-[#00df9a]">
           GAURAV.
         </h1>
@@ -84,12 +90,12 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="p-4 border-b border-b-gray-700">
-            <ScrollLink to="about" smooth={true} duration={500} offset={-70}>
+            <ScrollLink to="about" onClick={handleLinkClick} smooth={true} duration={500} offset={-70}>
               Skills
             </ScrollLink>
           </li>
           <li className="p-4">
-            <ScrollLink to="contact" smooth={true} duration={500} offset={-70}>
+            <ScrollLink to="contact" onClick={handleLinkClick} smooth={true} duration={500} offset={-70}>
               Contact
             </ScrollLink>
           </li>
